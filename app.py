@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 # --- Configurable Weights ---
 WEIGHTS = {
@@ -79,7 +80,7 @@ st.title("🎬 Box Office Prediction App")
 uploaded_file = st.file_uploader("Upload Movie Data (.xlsx)", type="xlsx")
 
 if uploaded_file:
-    df = pd.read_excel(uploaded_file)
+    df = pd.read_excel(uploaded_file, engine="openpyxl")  # ✅ Fixed
     df.columns = df.columns.str.strip()
 
     st.subheader("Data Preview")
@@ -123,7 +124,12 @@ if uploaded_file:
         }
 
         if st.sidebar.button("Predict Step 2"):
-            step2_wknd, step2_total = predict_box_office_step2(st.session_state['step1'][0], st.session_state['step1'][1], views, category)
+            step2_wknd, step2_total = predict_box_office_step2(
+                st.session_state['step1'][0],
+                st.session_state['step1'][1],
+                views,
+                category
+            )
             st.session_state['step2'] = (step2_wknd, step2_total)
 
             st.success(f"Step 2 - Weekend: {step2_wknd} Cr | Total: {step2_total} Cr")
@@ -133,7 +139,12 @@ if uploaded_file:
         critics = st.sidebar.slider("Critics Review", 0.0, 10.0, 5.0)
 
         if st.sidebar.button("Predict Step 3"):
-            step3_wknd, step3_total = predict_box_office_step3(st.session_state['step2'][0], st.session_state['step2'][1], imdb, critics)
+            step3_wknd, step3_total = predict_box_office_step3(
+                st.session_state['step2'][0],
+                st.session_state['step2'][1],
+                imdb,
+                critics
+            )
 
             st.success(f"Final Prediction - Weekend: {step3_wknd} Cr | Total: {step3_total} Cr")
 
@@ -161,4 +172,3 @@ if uploaded_file:
                 })
                 result_df.to_csv("prediction_output.csv", index=False)
                 st.download_button("Download CSV", "prediction_output.csv", file_name="prediction.csv")
-
