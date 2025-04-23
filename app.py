@@ -73,7 +73,7 @@ def predict_box_office_step3(weekend, total, imdb_rating, critics_review):
 st.title("🎬 Box Office Prediction App")
 
 # ✅ Automatically load Excel file from the project folder (GitHub)
-excel_file = "your_file.xlsx"  # <-- replace with your actual Excel filename
+excel_file = "Movie Collections 2023.xlsx"  # <-- replace with your actual Excel filename
 df = pd.read_excel(excel_file, engine="openpyxl")
 df.columns = df.columns.str.strip()
 
