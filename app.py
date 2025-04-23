@@ -121,7 +121,7 @@ if 'step1' in st.session_state:
             views,
             category
         )
-        st.session_state['step2'] = (step2_wknd, step2_total)
+        st.session_state['step2'] = (step1_wknd, step2_total)
         st.success(f"Step 2 - Weekend: {step1_wknd} Cr | Total: {step2_total} Cr")
 
 if 'step2' in st.session_state:
