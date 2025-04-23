@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# --- Configurable Weights ---
 WEIGHTS = {
     'Director': 0.09,
     'Genre': 0.10,
@@ -73,7 +72,7 @@ def predict_box_office_step3(weekend, total, imdb_rating, critics_review):
 st.title("🎬 Box Office Prediction App")
 
 # ✅ Automatically load Excel file from the project folder (GitHub)
-excel_file = "Movie Collections 2023.xlsx"  # <-- replace with your actual Excel filename
+excel_file = "Movie Collections 2023.xlsx" 
 df = pd.read_excel(excel_file, engine="openpyxl")
 df.columns = df.columns.str.strip()
 
