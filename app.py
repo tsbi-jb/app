@@ -122,7 +122,7 @@ if 'step1' in st.session_state:
             category
         )
         st.session_state['step2'] = (step2_wknd, step2_total)
-        st.success(f"Step 2 - Weekend: {step2_wknd} Cr | Total: {step2_total} Cr")
+        st.success(f"Step 2 - Weekend: {step1_wknd} Cr | Total: {step2_total} Cr")
 
 if 'step2' in st.session_state:
     imdb = st.sidebar.slider("IMDB Rating", 0.0, 10.0, 6.5)
@@ -136,7 +136,7 @@ if 'step2' in st.session_state:
             critics
         )
 
-        st.success(f"Final Prediction - Weekend: {step3_wknd} Cr | Total: {step3_total} Cr")
+        st.success(f"Final Prediction - Weekend: {step1_wknd} Cr | Total: {step3_total} Cr")
 
         # Visualization
         st.subheader("Prediction Breakdown")
